@@ -10,7 +10,7 @@
 
 # Packages for Wrangling and Analysis
 library(tidyverse)
-library(DescTools)  # function for posthoc analysis
+library(DescTools) 
 library(phyloseq)
 library(vegan)
 
@@ -71,10 +71,12 @@ xn_summ <- xn_data %>%
 xn_pal <- c( '#B6D886', '#FD8B8B', '#F56147', '#F7C059',  '#529163')
 names(xn_pal) <- c('XN_IXN', 'XN_DXN', 'XN_x8PN', 'XN_DDXN', 'XN_x6PN')
 
+# H-SHIME
 shimeA <- xn_summ %>% 
         dplyr::filter(SHIME == 'A') %>% 
         dplyr::filter(week != 'B')
 
+# D-SHIME
 shimeB <- xn_summ %>% 
         dplyr::filter(SHIME == 'B') %>% 
         dplyr::filter(week != 'B')
@@ -127,9 +129,10 @@ barB <- ggplot(shimeB, aes(week, mConc, fill = metabolite, group = SHIME)) +
 
 # Longitudinal Plots ----------------------
 
+# H-SHIME
 xn_shimeA <- xn_summ %>% 
         dplyr::filter(SHIME == 'A')
-
+# D-SHIME
 xn_shimeB <- xn_summ %>% 
         dplyr::filter(SHIME == 'B')
 
@@ -199,8 +202,8 @@ L <- ggplot(xn_shimeA, aes(week, mConc, fill = metabolite, group = SHIME)) +
 
 leg <- get_legend(L)
 
-# [700w x 600h]
-leg <- as_ggplot(leg)
+# [SAVE 700w x 600h]
+leg <- as_ggplot(leg) 
 
 # XN Metabolites Longitudinal and Stacked Bar Plots
 # [SAVE 1200w x 800h]
@@ -437,7 +440,6 @@ ggplot(adiv4plot, aes(time, mFA, group = SHIME, shape = SHIME)) +
         geom_text(data = ann_below.05.Shan, aes (time, mFA, group = SHIME), nudge_x = -0.05, label = '*', size = 9, color = 'black') +
         geom_text(data = ann_below.05.Obs, aes (time, mFA, group = SHIME), nudge_x = 0.05, label = '*', size = 9, color = 'black') +
         geom_text(data = ann_below.01, aes (time, mFA, group = SHIME), nudge_x = -0.05, label = '**', size = 9, color = 'black')
-
 
 
 
